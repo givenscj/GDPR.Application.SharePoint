@@ -14,3 +14,5 @@ C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.ShareP
 C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.dll
 C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.pdb
 C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll.config
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.xml
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Net.Http.Formatting.xml
