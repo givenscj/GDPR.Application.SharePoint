@@ -50,7 +50,7 @@
     <Compile Include="SharePoint2019.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gdpr-ref-architecture\GDPR.Common\GDPR.Common.csproj">
+    <ProjectReference Include="..\GDPR.Common\GDPR.Common.csproj">
       <Project>{8061a092-af27-4ae4-a14a-0a01d1045d91}</Project>
       <Name>GDPR.Common</Name>
     </ProjectReference>
