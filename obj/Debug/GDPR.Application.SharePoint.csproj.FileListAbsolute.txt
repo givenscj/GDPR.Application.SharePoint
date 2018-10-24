@@ -1,0 +1,16 @@
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\Newtonsoft.Json.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Net.Http.Formatting.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.dll.config
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csprojAssemblyReference.cache
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csproj.CoreCompileInputs.cache
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csproj.CopyComplete
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll.config
