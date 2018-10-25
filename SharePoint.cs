@@ -1,12 +1,18 @@
-﻿using GDPR.Util;
-using GDPR.Util.Classes;
-using GDPR.Util.Data;
+﻿using GDPR.Applications;
+using GDPR.Common.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using GDPR.Common.Classes;
+=======
+using GDPR.Util;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.Office.Server.UserProfiles;
+>>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
 
 namespace GDPR.Applications
 {
@@ -48,6 +54,43 @@ namespace GDPR.Applications
 
             core.SaveEntityProperties(this.ApplicationId, this.Properties, false);
         }
-        
+
+        public override void AnonymizeRecord(Record r)
+        {
+            base.AnonymizeRecord(r);
+        }
+
+        public override List<GDPRSubject> GetAllSubjects(int skip, int count, DateTime? changeDate)
+        {
+            List<GDPRSubject> subjects = new List<GDPRSubject>();
+
+            SPFarm farm = SPFarm.Local;
+
+            using (SPSite site = new SPSite("http://servername"))
+            {
+                SPServiceContext serviceContext = SPServiceContext.GetContext(site);
+
+                try
+                {
+                    UserProfileManager userProfileMgr = new UserProfileManager(serviceContext);
+
+                    foreach (UserProfile profile in userProfileMgr)
+                    {
+                        GDPRSubject s = new GDPRSubject();
+
+                        subjects.Add(s);
+                    }
+                }
+
+                catch (System.Exception e)
+                {
+                    Console.WriteLine(e.GetType().ToString() + ": " + e.Message);
+                    Console.Read();
+                }
+            }
+
+            return subjects;
+        }
+
     }
 }
