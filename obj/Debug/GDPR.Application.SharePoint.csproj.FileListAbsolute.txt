@@ -59,3 +59,12 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Policy.xml
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csprojResolveAssemblyReference.cache
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\libphonenumber.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
