@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using GDPR.Common.Classes;
 =======
 using GDPR.Util;
@@ -13,6 +14,14 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using Microsoft.Office.Server.UserProfiles;
 >>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
+=======
+using GDPR.Utililty;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.Office.Server.UserProfiles;
+using GDPR.Utililty.Data;
+using GDPR.Common;
+>>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
 
 namespace GDPR.Applications
 {
@@ -66,26 +75,85 @@ namespace GDPR.Applications
 
             SPFarm farm = SPFarm.Local;
 
-            using (SPSite site = new SPSite("http://servername"))
+            bool done = false; 
+
+            SPWebService service = farm.Services.GetValue<SPWebService>("");
+
+            foreach (SPWebApplication webApp in service.WebApplications)
             {
-                SPServiceContext serviceContext = SPServiceContext.GetContext(site);
-
-                try
+                foreach (SPSite site in webApp.Sites)
                 {
-                    UserProfileManager userProfileMgr = new UserProfileManager(serviceContext);
+                    if (done)
+                        return subjects;
 
-                    foreach (UserProfile profile in userProfileMgr)
+                    //get user profiles...
+                    SPServiceContext serviceContext = SPServiceContext.GetContext(site);
+
+                    try
                     {
-                        GDPRSubject s = new GDPRSubject();
+                        UserProfileManager userProfileMgr = new UserProfileManager(serviceContext);
 
-                        subjects.Add(s);
+                        foreach (UserProfile profile in userProfileMgr)
+                        {
+                            GDPRSubject s = new GDPRSubject();
+                            s.Attributes = new System.Collections.Hashtable();
+                            s.ApplicationSubjectId = profile.ID.ToString();
+                            
+                            foreach(var prop in profile.Properties)
+                            {
+                                UserProfileValueCollection val = profile[prop.Name];
+
+                                if (val == null || val.Value == null)
+                                    continue;
+
+                                s.Attributes.Add(prop.Name, val.Value);
+
+                                switch(prop.Name)
+                                {
+                                    case "FirstName":
+                                        s.FirstName = val.Value.ToString();
+                                        break;
+                                    case "LastName":
+                                        s.LastName = val.Value.ToString();
+                                        break;
+                                    case "AboutMe":
+                                        break;
+                                    case "WorkPhone":
+                                    case "MobilePhone":
+                                    case "HomePhone":
+                                        BasePhone p = BasePhone.Parse(val.Value.ToString());
+
+                                        if (p != null)
+                                        {
+                                            GDPRSubjectPhone sp = new GDPRSubjectPhone();
+                                            sp.Raw = p.ToString();
+                                            s.Phones.Add(sp);
+                                        }
+                                        break;
+                                    case "WorkEmail":
+                                        s.EmailAddresses.Add(new GDPRSubjectEmail { EmailAddress = val.Value.ToString() });
+                                        break;
+                                    case "OfficeLocation":
+                                        string address = val.Value.ToString();
+                                        BaseAddress a = core.GeocodeAddress(null, address);
+                                        s.Addresses.Add(new GDPRSubjectAddress() { Raw = a.ToString() });
+                                        break;
+                                    case "Birthday":
+                                        s.BirthDate = DateTime.Parse(val.Value.ToString());
+                                        break;
+                                }
+                            }
+
+                            subjects.Add(s);
+                        }
+
+                        done = true;
                     }
-                }
-
-                catch (System.Exception e)
-                {
-                    Console.WriteLine(e.GetType().ToString() + ": " + e.Message);
-                    Console.Read();
+                    catch (System.Exception e)
+                    {
+                        Console.WriteLine(e.GetType().ToString() + ": " + e.Message);
+                        Console.Read();
+                    }
                 }
             }
 
