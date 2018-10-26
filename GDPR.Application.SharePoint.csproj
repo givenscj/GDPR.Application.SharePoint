@@ -82,7 +82,7 @@
       <Project>{8061a092-af27-4ae4-a14a-0a01d1045d91}</Project>
       <Name>GDPR.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GDPR.SDK\GDPR.SDK.csproj">
+    <ProjectReference Include="..\GDPR.SDK\GDPR.SDK\GDPR.SDK.csproj">
       <Project>{ec4543b9-a0f5-4c15-a4c6-acb4cfd94be2}</Project>
       <Name>GDPR.SDK</Name>
     </ProjectReference>

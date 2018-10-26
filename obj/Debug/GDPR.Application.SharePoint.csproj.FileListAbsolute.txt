@@ -27,10 +27,6 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Server.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Server.UserProfiles.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.Client.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Debug\Newtonsoft.Json.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.Net.Http.Formatting.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.WebHost.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Server.Search.Applications.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.Client.ServerRuntime.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.Security.dll
@@ -89,13 +85,11 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-<<<<<<< HEAD
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\BouncyCastle.OpenPgp.dll
-=======
 >>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
 >>>>>>> e8d1f0b135dbb0d8dac70fe87fc8b26ab1e14aa3
