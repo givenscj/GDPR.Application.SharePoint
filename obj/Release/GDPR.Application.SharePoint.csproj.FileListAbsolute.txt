@@ -8,10 +8,10 @@ C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Office.Server.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Office.Server.UserProfiles.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Client.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Release\Newtonsoft.Json.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Net.Http.Formatting.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Web.Http.dll
-C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Web.Http.WebHost.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Release\BouncyCastle.OpenPgp.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Release\libphonenumber.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.WindowsAzure.Storage.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.ServiceBus.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Office.Server.Search.Applications.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Client.ServerRuntime.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Security.dll
@@ -45,6 +45,10 @@ C:\My Code\GDPR.Application.SharePoint\bin\Release\Newtonsoft.Json.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Net.Http.Formatting.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Web.Http.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\System.Web.Http.WebHost.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Release\BouncyCastle.OpenPgp.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.WindowsAzure.Storage.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.WindowsAzure.Storage.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.ServiceBus.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Security.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Taxonomy.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.SharePoint.Client.Runtime.xml
@@ -59,3 +63,5 @@ C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Office.DocumentMana
 C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Office.Policy.xml
 C:\My Code\GDPR.Application.SharePoint\obj\Release\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\obj\Release\GDPR.Application.SharePoint.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Azure.Services.AppAuthentication.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Release\Microsoft.Azure.Services.AppAuthentication.xml
