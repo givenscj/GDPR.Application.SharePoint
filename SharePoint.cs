@@ -5,10 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using Microsoft.Office.Server.UserProfiles;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+using GDPR.Common.Classes;
+=======
+using GDPR.Util;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.Office.Server.UserProfiles;
+>>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
+=======
 using GDPR.Common;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
+using Microsoft.Office.Server.UserProfiles;
+using GDPR.Common.Data;
+>>>>>>> e8d1f0b135dbb0d8dac70fe87fc8b26ab1e14aa3
+using GDPR.Common;
+>>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
 
 namespace GDPR.Applications
 {

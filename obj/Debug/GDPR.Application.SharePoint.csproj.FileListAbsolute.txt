@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\Newtonsoft.Json.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Net.Http.Formatting.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.SDK.dll.config
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csprojAssemblyReference.cache
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csproj.CoreCompileInputs.cache
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csproj.CopyComplete
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
+C:\github\givenscj\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.dll
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Common.pdb
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll.config
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Web.Http.xml
+C:\github\givenscj\GDPR.Application.SharePoint\bin\Debug\System.Net.Http.Formatting.xml
+=======
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll.config
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\GDPR.Application.SharePoint.pdb
@@ -59,6 +79,7 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Policy.xml
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csprojResolveAssemblyReference.cache
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
+>>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\libphonenumber.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.dll
@@ -68,9 +89,13 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+<<<<<<< HEAD
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\BouncyCastle.OpenPgp.dll
+=======
+>>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
+>>>>>>> e8d1f0b135dbb0d8dac70fe87fc8b26ab1e14aa3
