@@ -93,3 +93,4 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.x
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\BouncyCastle.OpenPgp.dll
 >>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
 >>>>>>> e8d1f0b135dbb0d8dac70fe87fc8b26ab1e14aa3
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\BouncyCastle.OpenPgp.xml
