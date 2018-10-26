@@ -15,11 +15,11 @@ using Microsoft.SharePoint.Administration;
 using Microsoft.Office.Server.UserProfiles;
 >>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
 =======
-using GDPR.Utililty;
+using GDPR.Common;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using Microsoft.Office.Server.UserProfiles;
-using GDPR.Utililty.Data;
+using GDPR.Common.Data;
 using GDPR.Common;
 >>>>>>> c7909c590e0ffe4d90ca2265bd60128d9f9bf1a0
 

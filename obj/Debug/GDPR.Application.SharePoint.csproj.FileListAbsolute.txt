@@ -79,9 +79,7 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Policy.xml
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csprojResolveAssemblyReference.cache
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
-<<<<<<< HEAD
 >>>>>>> 0d1c1e0b30ac297459fd746b5f44d4fb46dbad3d
-=======
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\libphonenumber.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.dll
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.dll
