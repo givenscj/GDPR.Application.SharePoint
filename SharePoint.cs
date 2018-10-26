@@ -5,11 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GDPR.Utililty;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using Microsoft.Office.Server.UserProfiles;
-using GDPR.Utililty.Data;
 using GDPR.Common;
 
 namespace GDPR.Applications

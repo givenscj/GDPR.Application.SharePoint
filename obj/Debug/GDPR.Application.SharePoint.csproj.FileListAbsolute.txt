@@ -68,3 +68,9 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.ServiceBus.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.Services.AppAuthentication.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.WindowsAzure.Storage.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\BouncyCastle.OpenPgp.dll
