@@ -1,15 +1,10 @@
-﻿using GDPR.Applications;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GDPR.Common;
+using GDPR.Common.Classes;
+using Microsoft.Office.Server.UserProfiles;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
-using Microsoft.Office.Server.UserProfiles;
-using GDPR.Common.Classes;
-using GDPR.Common;
-using GDPR.Common.Data;
+using System;
+using System.Collections.Generic;
 
 namespace GDPR.Applications
 {
@@ -20,6 +15,8 @@ namespace GDPR.Applications
             this._version = "1.0.0.0";
 
             this._supportsEmailSearch = true;
+            this._supportsPersonalSearch = true;
+            this._supportsPhoneSearch = true;
         }
 
         public override void Init()
