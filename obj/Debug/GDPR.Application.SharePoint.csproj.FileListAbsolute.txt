@@ -71,7 +71,6 @@ C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Office.Server.Search.
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.Search.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.BusinessData.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\DocumentFormat.OpenXml.xml
-C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Rest.ClientRuntime.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Azure.KeyVault.WebKey.xml
 C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.SharePoint.Portal.xml
@@ -84,3 +83,10 @@ C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csp
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.csproj.CopyComplete
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.dll
 C:\My Code\GDPR.Application.SharePoint\obj\Debug\GDPR.Application.SharePoint.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.Core.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.S3.dll
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.Core.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.Core.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.S3.pdb
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\AWSSDK.S3.xml
+C:\My Code\GDPR.Application.SharePoint\bin\Debug\Microsoft.Rest.ClientRuntime.xml

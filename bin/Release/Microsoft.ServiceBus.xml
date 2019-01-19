@@ -125,18 +125,6 @@
             Check if the given buffer contains the 2 specified ascii characters (in sequence) without having to allocate or convert byte[] into string
             </summary>
         </member>
-        <member name="T:Microsoft.ServiceBus.Common.InternalBufferManagerStream">
-            <summary>
-            A Stream implementation that uses an array from the given InternalBufferManager.
-            When Disposed the array is returned to the buffer manager.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Common.InternalBufferManagerStream.Write(System.IO.Stream)">
-            <summary>
-            Write into this Stream from another Stream. This method uses our existing array and avoids the allocation
-            that Stream.CopyTo or other Read+Write methods would require.
-            </summary>
-        </member>
         <member name="T:Microsoft.ServiceBus.Common.TaskCompletionSourceExtensions">
             <summary>Extension methods for TaskCompletionSource.</summary>
         </member>
@@ -437,9 +425,6 @@
             </summary>
             <param name="buffer"></param>
         </member>
-        <member name="T:Microsoft.ServiceBus.Common.TimeoutHelper">
-            causing RemainingTime() method to return the original timeout value everytime.
-        </member>
         <member name="P:Microsoft.ServiceBus.Common.SRCore.ActionItemIsAlreadyScheduled">
             <summary>Gets localized string like: The ActionItem was scheduled for execution but has not completed yet.</summary>
         </member>
@@ -610,14 +595,6 @@
             <param name="param3">Parameter 3 for string: The requested partition count exceeded the maximum partitions allowed for Namespace: {0}. Maximum allowed partitions per thoughput unit: {1}. Current throughput units: {2}. Current partition count: {3}. Requested partition count: {4}, whereas, available partition count: {5}. Increase through put units of the Service Bus Namespace to be able to create more partitions.</param>
             <param name="param4">Parameter 4 for string: The requested partition count exceeded the maximum partitions allowed for Namespace: {0}. Maximum allowed partitions per thoughput unit: {1}. Current throughput units: {2}. Current partition count: {3}. Requested partition count: {4}, whereas, available partition count: {5}. Increase through put units of the Service Bus Namespace to be able to create more partitions.</param>
             <param name="param5">Parameter 5 for string: The requested partition count exceeded the maximum partitions allowed for Namespace: {0}. Maximum allowed partitions per thoughput unit: {1}. Current throughput units: {2}. Current partition count: {3}. Requested partition count: {4}, whereas, available partition count: {5}. Increase through put units of the Service Bus Namespace to be able to create more partitions.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Common.SRCore.EntityCountExceeded(System.Object,System.Object)">
-            <summary>Gets localized string like: The maximum number of entities for namespace has been reached or exceeded. Actual: {0}, Max allowed: {1}.</summary>
-            <param name="param0">Parameter 0 for string: The maximum number of entities for namespace has been reached or exceeded. Actual: {0}, Max allowed: {1}.</param>
-            <param name="param1">Parameter 1 for string: The maximum number of entities for namespace has been reached or exceeded. Actual: {0}, Max allowed: {1}.</param>
-        </member>
-        <member name="T:Microsoft.ServiceBus.AzureActiveDirectoryTokenProvider">
-            <summary>Represents the Azure Active Directory token provider for the Service Bus and Event Hubs.</summary>
         </member>
         <member name="T:Microsoft.ServiceBus.IoTTokenProvider">
             <summary />
@@ -794,7 +771,6 @@
         <member name="T:Microsoft.ServiceBus.Messaging.Amqp.AmqpMessage.AmqpClonedMessage">
             <summary>
             Allow updates in mutalble sections.
-            Note: currently this is only used by relay. 
             </summary>
         </member>
         <member name="T:Microsoft.ServiceBus.Messaging.Amqp.AmqpMessage.AmqpBodyStreamMessage">
@@ -1141,60 +1117,6 @@
             <summary> Gets or sets a value indicating whether the runtime metric of a receiver is enabled. </summary>
             <value> true if a client wants to access <see cref="T:Microsoft.ServiceBus.Messaging.ReceiverRuntimeInfo"/> using <see cref="T:Microsoft.ServiceBus.Messaging.PartitionContext"/>. </value>
         </member>
-        <member name="T:Microsoft.ServiceBus.Messaging.EventPosition">
-            <summary>
-            Defines a position of an <see cref="T:Microsoft.ServiceBus.Messaging.EventData" /> in the event hub partition.
-            The position can be one of <see cref="P:Microsoft.ServiceBus.Messaging.EventData.Offset"/>, <see cref="P:Microsoft.ServiceBus.Messaging.EventData.SequenceNumber"/>
-            or <see cref="P:Microsoft.ServiceBus.Messaging.EventData.EnqueuedTimeUtc"/>.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventPosition.FromStart">
-            <summary>
-            Returns the position for the start of a stream. Provide this position in receiver creation
-            to starting receiving from the first available event in the partition.
-            </summary>
-            <seealso cref="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiver(System.String,Microsoft.ServiceBus.Messaging.EventPosition,System.Nullable{System.Int64},Microsoft.ServiceBus.Messaging.ReceiverOptions)"/>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventPosition.FromEnd">
-            <summary>
-            Returns the position for the end of a stream. Provide this position in receiver creation
-            to start receiving from the next available event in the partition after the receiver is created.
-            </summary>
-            <seealso cref="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiver(System.String,Microsoft.ServiceBus.Messaging.EventPosition,System.Nullable{System.Int64},Microsoft.ServiceBus.Messaging.ReceiverOptions)"/>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventPosition.FromOffset(System.String,System.Boolean)">
-            <summary>
-            Creates a position at the given offset.
-            </summary>
-            <param name="offset"><see cref="P:Microsoft.ServiceBus.Messaging.EventData.Offset"/> </param>
-            <param name="inclusive">If true, the event at given offset is included; otherwise the next event is returned.</param>
-            <returns>An <see cref="T:Microsoft.ServiceBus.Messaging.EventPosition"/> object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventPosition.FromSequenceNumber(System.Int64,System.Boolean)">
-            <summary>
-            Creates a position at the given sequence number.
-            </summary>
-            <param name="sequenceNumber"><see cref="P:Microsoft.ServiceBus.Messaging.EventData.SequenceNumber"/></param>
-            <param name="inclusive">If true, the event at given sequence number is included; otherwise the next event is returned.</param>
-            <returns>An <see cref="T:Microsoft.ServiceBus.Messaging.EventPosition"/> object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventPosition.FromEnqueuedTime(System.DateTime)">
-            <summary>
-            Creates a position at the given enqueued time. Events after this time are returned.
-            </summary>
-            <param name="enqueuedTimeUtc"><see cref="P:Microsoft.ServiceBus.Messaging.EventData.EnqueuedTimeUtc"/></param>
-            <returns>An <see cref="T:Microsoft.ServiceBus.Messaging.EventPosition"/> object.</returns>
-        </member>
-        <member name="T:Microsoft.ServiceBus.Messaging.MessagingEntityClient">
-            <summary>
-            This is the base abstract class that all clients for messsaging entities
-            like topics, queues, and subscriptions. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.ServiceBus.Messaging.MessagingEntityClient.Path">
-            <summary> Gets the queue's, topic's, or subscription's path relative to the <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory"/> base address. </summary>
-            <value> The queue's, topic's, or subscription's path relative to the <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</value>
-        </member>
         <member name="T:Microsoft.ServiceBus.Messaging.IpFilterActionType">
             <summary>
             Represent the type of action the ip that match the IpFilter is applied to.
@@ -1214,62 +1136,6 @@
             <summary>
             This is done to help json and other deserializers
             </summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using default values.</summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor(Microsoft.ServiceBus.Messaging.Lease)">
-            <summary>Initializes a new instance of the <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using specified lease.</summary>
-            <param name="lease">The messaging lease.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor(Microsoft.ServiceBus.Messaging.Lease,System.Exception)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using specified lease and the error that caused the exception.</summary> 
-            <param name="lease">The messaging lease.</param>
-            <param name="innerException">The error that caused the exception.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor(System.String)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using specified error message.</summary> 
-            <param name="message">The message associated with the error.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor(System.String,System.Exception)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using specified error message and inner exception.</summary> 
-            <param name="message">The message associated with the error.</param>
-            <param name="innerException">The error that caused the exception.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException" /> class using specified information and context.</summary> 
-            <param name="info">The serialized information about the exception.</param>
-            <param name="context">The contextual information about the source or destination.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.LeaseCannotBeAcquiredException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object to populate with data.</param>
-            <param name="context">The destination (see StreamingContext) for this serialization.</param>
-        </member>
-        <member name="T:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException">
-            <summary>Represents the exception in conflicting broker managment calls.</summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException.#ctor(System.String,System.Exception)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary> 
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="innerException">The exception that is the cause of the current exception.</param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException.#ctor(System.String,Microsoft.ServiceBus.Tracing.TrackingContext,System.Exception)">
-            <summary> Constructor. </summary>
-            <param name="entityName"> Name of the entity. </param>
-            <param name="trackingContext"> The TrackingContext. </param>
-            <param name="innerException"> Optional inner exception </param>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException.#ctor(Microsoft.ServiceBus.Messaging.MessagingExceptionDetail,Microsoft.ServiceBus.Tracing.TrackingContext)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.ManagementConflictOperationException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary> 
-            /// <param name="detail"> The exception detail. </param>
-            <param name="trackingContext"> The TrackingContext. </param>
         </member>
         <member name="T:Microsoft.ServiceBus.Messaging.ReceiverOptions">
             <summary>Represents options can be set during the creation of a event hub receiver.</summary> 
@@ -1578,63 +1444,6 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential,System.Nullable{System.TimeSpan},System.Boolean)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.EventHubClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Event Hubs. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the Event Hub.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientCredential">The app credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="enableLinkRedirect">Value indicating whether this transport is ready to be redirected to the server backend.</param>
-            <returns>The newly created Event Hub client object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientAssertionCertificate,System.Nullable{System.TimeSpan},System.Boolean)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.EventHubClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Event Hubs. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the Event Hub.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientAssertionCertificate">The client assertion certificate credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="enableLinkRedirect">Value indicating whether this transport is ready to be redirected to the server backend.</param>
-            <returns>The newly created Event Hub client object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.UserPasswordCredential,System.Nullable{System.TimeSpan},System.Boolean)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.EventHubClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Event Hubs. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the Event Hub.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="userPasswordCredential">The user password credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="enableLinkRedirect">Value indicating whether this transport is ready to be redirected to the server backend.</param>
-            <returns>The newly created Event Hub client object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier,System.Nullable{System.TimeSpan},System.Boolean)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.EventHubClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Event Hubs. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the Event Hub.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="userIdentifier">User Identifier</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="enableLinkRedirect">Value indicating whether this transport is ready to be redirected to the server backend.</param>
-            <returns>The newly created Event Hub client object.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.CreateWithManagedServiceIdentity(System.Uri,System.String,System.Nullable{System.TimeSpan},System.Boolean)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.EventHubClient" /> by using Azure Managed Service Identity authentication.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Event Hubs. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the Event Hub.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="enableLinkRedirect">Value indicating whether this transport is ready to be redirected to the server backend.</param>
-            <returns>The newly created Event Hub client object.</returns>
-        </member>
         <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.CreateFromConnectionString(System.String,System.String)">
             <summary>Creates a new instance of the Event Hubs client using the specified connection string. Use this overload only when the connection string does not use the 
             <see cref="P:Microsoft.ServiceBus.ServiceBusConnectionStringBuilder.EntityPath" /> property.</summary> 
@@ -1664,11 +1473,15 @@
         <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.Send(Microsoft.ServiceBus.Messaging.EventData)">
             <summary>Sends event data to an Event Hub.</summary>
             <param name="data">The event data.</param>
+            <remarks>Any <see cref="T:Microsoft.ServiceBus.Messaging.EventData"/> instance send using this method must have 
+            the <see cref="P:Microsoft.ServiceBus.Messaging.EventData.PartitionKey"/> set.</remarks>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.SendAsync(Microsoft.ServiceBus.Messaging.EventData)">
             <summary>Asynchronously sends event data to an Event Hub.</summary>
             <param name="data">The <see cref="T:Microsoft.ServiceBus.Messaging.EventData" /> to send.</param>
             <returns>The task representing the asynchronous operation.</returns>
+            <remarks>Any <see cref="T:Microsoft.ServiceBus.Messaging.EventData"/> instance send using this method must have 
+            the <see cref="P:Microsoft.ServiceBus.Messaging.EventData.PartitionKey"/> set.</remarks>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.EventHubClient.SendBatch(System.Collections.Generic.IEnumerable{Microsoft.ServiceBus.Messaging.EventData})">
             <summary>Sends a batch of event data.</summary>
@@ -1904,13 +1717,6 @@
             <remarks>Service only uses this datetime as an approximation when delivering next event.
             Keep in mind that there can be clock skew between client time and service time, so user application 
             should be designed to handle duplication in event delivery.</remarks>
-        </member>
-        <member name="P:Microsoft.ServiceBus.Messaging.EventHubReceiver.StartingSequenceNumber">
-            <summary>Gets the starting sequence number for this receiver. The 
-            <see cref="M:Microsoft.ServiceBus.Messaging.EventHubReceiver.Receive" /> method starts receiving the next event after this 
-            <see cref="P:Microsoft.ServiceBus.Messaging.EventHubReceiver.StartingSequenceNumber" /> value.</summary> 
-            <value>The starting sequence number (exclusive). A null value means that the receiver was created with an offset or a date time.</value>
-            <remarks>This starting offset ties to one partition only, represented by <see cref="P:Microsoft.ServiceBus.Messaging.EventHubReceiver.PartitionId"/>.</remarks>
         </member>
         <member name="P:Microsoft.ServiceBus.Messaging.EventHubReceiver.EventHubPath">
             <summary>Gets the event hub path.</summary>
@@ -2543,15 +2349,6 @@
             Keep in mind that there can be clock skew between client time and service time, so user application 
             should be designed to handle duplication in event delivery.</remarks>
         </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiver(System.String,Microsoft.ServiceBus.Messaging.EventPosition,System.Nullable{System.Int64},Microsoft.ServiceBus.Messaging.ReceiverOptions)">
-            <summary>Creates a new Event Hubs receiver in the specified partition, at the specified starting position. You 
-            can use the created receiver to receive events for one Event Hubs partition, specified by <paramref name="partitionId" />.</summary> 
-            <param name="partitionId">The ID of the partition.</param>
-            <param name="position">The starting <see cref="T:Microsoft.ServiceBus.Messaging.EventPosition"/> at which to start receiving messages.</param>
-            <param name="epoch">The epoch value. If set, the service uses this value to enforce partition/lease ownership.</param>
-            <param name="receiverOptions">Options for a event hub receiver.</param>
-            <returns>Returns <see cref="T:Microsoft.ServiceBus.Messaging.EventHubReceiver" />.</returns>
-        </member>
         <member name="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiverAsync(System.String,System.Int64,Microsoft.ServiceBus.Messaging.ReceiverOptions)">
             <summary>Asynchronous version of 
             <see cref="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiver(System.String,System.Int64,Microsoft.ServiceBus.Messaging.ReceiverOptions)" />.</summary> 
@@ -2661,15 +2458,6 @@
             
             Keep in mind that there can be clock skew between client time and service time, so user application 
             should be designed to handle duplication in event delivery.</remarks>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiverAsync(System.String,Microsoft.ServiceBus.Messaging.EventPosition,System.Nullable{System.Int64},Microsoft.ServiceBus.Messaging.ReceiverOptions)">
-            <summary>Asynchronous version of 
-            <see cref="M:Microsoft.ServiceBus.Messaging.EventHubConsumerGroup.CreateReceiver(System.String,Microsoft.ServiceBus.Messaging.EventPosition,System.Nullable{System.Int64},Microsoft.ServiceBus.Messaging.ReceiverOptions)" />.</summary> 
-            <param name="partitionId">The ID of the partition.</param>
-            <param name="position">The starting <see cref="T:Microsoft.ServiceBus.Messaging.EventPosition"/> at which to start receiving messages.</param>
-            <param name="epoch">The epoch value. The service uses this value to enforce partition/lease ownership.</param>
-            <param name="receiverOptions">Options for a event hub receiver.</param>
-            <returns>Returns <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
         </member>
         <member name="T:Microsoft.ServiceBus.Messaging.IEventProcessor">
             <summary>Provides methods for event processors. Applications must implement this interface, 
@@ -3414,6 +3202,10 @@
         </member>
         <member name="T:Microsoft.ServiceBus.Messaging.MessageBrowser">
             <summary> MessageBrowser class is used to peek messages from the message container. </summary>    
+        </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageBrowser.Path">
+            <summary> Gets the path of the queue/topic. This path is relative to MessagingFactory base address.  </summary>
+            <value> The path of the queue/topic. </value>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.MessageBrowser.EndPeek(System.IAsyncResult)">
             <summary> Ends the message Peek operation. </summary>
@@ -4324,11 +4116,6 @@
             <summary>Returns the exception details for an entity conflict in progress error. This can occur 
             if there is already a conflicting create or delete call pending on the entity in question.</summary> 
             <param name="entityName">The name of the messaging entity.</param>
-            <returns>Returns <see cref="T:Microsoft.ServiceBus.Messaging.MessagingExceptionDetail" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.MessagingExceptionDetail.ManagementConflictOperationInProgress(System.String)">
-            <summary>Returns the exception details for an managment operation conflict in progress error.</summary> 
-            <param name="message">The message of the operation.</param>
             <returns>Returns <see cref="T:Microsoft.ServiceBus.Messaging.MessagingExceptionDetail" />.</returns>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.MessagingExceptionDetail.DataCommunicationError(System.String)">
@@ -5807,12 +5594,6 @@
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.ScaleUnitGatewayEndpoint">
             <summary>Specifies the value for the ScaleUnitGatewayEndpoint string.</summary>
         </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.KafkaEnabled">
-            <summary>Specifies the value for the KafkaEnabled string.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.ZoneRedundant">
-            <summary>Specifies the value for the ZoneRedundant string.</summary>
-        </member>
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.AcsManagementEndpoint">
             <summary>Specifies the value for the AcsManagementEndpoint string.</summary>
         </member>
@@ -5900,6 +5681,36 @@
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.BodyTemplate">
             <summary>Specifies the value for the BodyTemplate string.</summary>
         </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventSourceInfo">
+            <summary>Specifies the value for the EventSourceInfo string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventSourceName">
+            <summary>Specifies the value for the EventSourceName string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventQueueEndpoint">
+            <summary>Specifies the value for the EventQueueEndpoint string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventTableEndpoint">
+            <summary>Specifies the value for the EventTableEndpoint string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventInputQueueName">
+            <summary>Specifies the value for the EventInputQueueName string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventInputQueueSharedAccessSignature">
+            <summary>Specifies the value for the EventInputQueueSharedAccessSignature string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventInputTableName">
+            <summary>Specifies the value for the EventInputTableName string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventInputTableSharedAccessSignature">
+            <summary>Specifies the value for the EventInputTableSharedAccessSignature string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventFeedbackQueueName">
+            <summary>Specifies the value for the EventFeedbackQueueName string.</summary>
+        </member>
+        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.EventFeedbackQueueSharedAccessSignature">
+            <summary>Specifies the value for the EventFeedbackQueueSharedAccessSignature string.</summary>
+        </member>
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.IpFilterAuthorizationRule">
             <summary>Specifies the value for the IpFilterAuthorizationRule string.</summary>
         </member>
@@ -5911,18 +5722,6 @@
         </member>
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.IpMaskString">
             <summary>Specifies the value for the IpMaskString string.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.VirtualNetworkAuthorizationRule">
-            <summary>Specifies the value for the VirtualNetworkAuthorizationRule string.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.VirtualNetworkSubnetId">
-            <summary>Specifies the value for the VirtualNetworkSubnetId string.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.VnetTrafficTag">
-            <summary>Specifies the value for the VnetTrafficTag string.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.SubnetTrafficTag">
-            <summary>Specifies the value for the SubnetTrafficTag string.</summary>
         </member>
         <member name="F:Microsoft.ServiceBus.Messaging.ManagementStrings.DeviceChallenge">
             <summary>Specifies the value for the DeviceChallenge string.</summary>
@@ -6388,13 +6187,6 @@
             <param name="message">The error message that explains the reason for the exception.</param>
             <param name="innerException">The exception that is the cause of the current exception.</param>
         </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.MessagingEntityNotFoundException.#ctor(System.String,Microsoft.ServiceBus.Tracing.TrackingContext,System.Exception)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.MessagingEntityNotFoundException" /> class with the entity name.</summary> 
-            <param name="message">he error message that explains the reason for the exception</param>
-            <param name="innerException">The exception that is the cause of the current exception.</param>
-            <param name="trackingContext"> The TrackingContext. </param>
-        </member>
         <member name="M:Microsoft.ServiceBus.Messaging.MessagingEntityNotFoundException.#ctor(Microsoft.ServiceBus.Messaging.MessagingExceptionDetail,Microsoft.ServiceBus.Tracing.TrackingContext)">
             <summary> Constructor. </summary>
             <param name="detail"> Detail about the cause of the exception. </param>
@@ -6606,6 +6398,10 @@
             <value>The number of messages that the queue receiver can simultaneously request.</value>
             <remarks> Takes effect on the next receive call to the server. </remarks>
         </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.QueueClient.Path">
+            <summary>Gets or sets the full path name of the queue.</summary>
+            <value>The queue path relative to the <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</value>
+        </member>
         <member name="P:Microsoft.ServiceBus.Messaging.QueueClient.MessagingFactory">
             <summary>Gets or sets the messaging factory.</summary>
             <value>The messaging factory.</value>
@@ -6647,68 +6443,6 @@
                 </appSettings>
             </code>
             </remarks>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the queue.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientCredential">The app credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientAssertionCertificate,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Sercvice Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the queue.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientAssertionCertificate">The client assertion certificate credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.UserPasswordCredential,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the queue.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="userPasswordCredential">The user password credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the queue.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="userIdentifier">User Identifier</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.CreateWithManagedServiceIdentity(System.Uri,System.String,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" /> by using Azure Managed Service Identity authentication.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the queue.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.QueueClient" />.</returns>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.QueueClient.CreateFromConnectionString(System.String,System.String)">
             <summary>Creates a new copy of 
@@ -7981,6 +7715,11 @@
             <summary>Gets or sets the message session identifier.</summary>
             <value>The message session identifier.</value>
         </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageSession.Path">
+            <summary>Gets the path of the queue or topic, relative to the 
+            <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</summary> 
+            <value>A string representing the path of the queue or topic.</value>
+        </member>
         <member name="P:Microsoft.ServiceBus.Messaging.MessageSession.InnerMessageReceiver">
             <summary> Gets the inner receiver for this session receiver. </summary>
             <summary> Sets the inner receiver for this session receiver. </summary>
@@ -8407,73 +8146,6 @@
             <param name="topicPath">The full pathname of the topic.</param>
             <param name="name">The name of the subscription.</param>
             <returns>A new copy of <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.Create(System.Uri,System.String,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="topicPath">The full pathname of the topic.</param>
-            <param name="name">The name of the subscription.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientCredential">The app credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.Create(System.Uri,System.String,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientAssertionCertificate,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Sercvice Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="topicPath">The full pathname of the topic.</param>
-            <param name="name">The name of the subscription.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientAssertionCertificate">The client assertion certificate credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.Create(System.Uri,System.String,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.UserPasswordCredential,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="topicPath">The full pathname of the topic.</param>
-            <param name="name">The name of the subscription.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="userPasswordCredential">The user password credential.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.Create(System.Uri,System.String,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="topicPath">The full pathname of the topic.</param>
-            <param name="name">The name of the subscription.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="userIdentifier">User Identifier</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.CreateWithManagedServiceIdentity(System.Uri,System.String,System.String,Microsoft.ServiceBus.Messaging.ReceiveMode,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" /> by using Azure Managed Service Identity authentication.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="topicPath">The full pathname of the topic.</param>
-            <param name="name">The name of the subscription.</param>
-            <param name="mode">The receive mode.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.SubscriptionClient" />.</returns>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.SubscriptionClient.CreateFromConnectionString(System.String,System.String,System.String)">
             <summary>Creates a new copy of 
@@ -11146,6 +10818,11 @@
              </example>
              </remarks>
         </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.Path">
+            <summary>Gets the path of the queue or topic, relative to the 
+            <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</summary> 
+            <value>A string representing the path of the queue or topic.</value>
+        </member>
         <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.BatchFlushInterval">
             <summary>Gets the batch flush interval.</summary>
             <value>The batch flush interval. The default value is 20 ms.</value>
@@ -11158,6 +10835,17 @@
         <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.Mode">
             <summary>Gets the message receive mode.</summary>
             <value>The message receive mode.</value>
+        </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.ReceiverStartTime">
+            <summary>Gets or sets the start time of the receiver.</summary>
+            <value>The start time of the receiver.</value>
+        </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.OffsetInclusive">
+            <summary />
+        </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.StartOffset">
+            <summary>Gets or sets the starting point of the offset.</summary>
+            <value>The starting point of the offset.</value>
         </member>
         <member name="P:Microsoft.ServiceBus.Messaging.MessageReceiver.SupportsGetRuntimeEntityDescription">
             <summary />
@@ -11840,6 +11528,11 @@
              </example>
              </remarks> 
         </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.MessageSender.Path">
+            <summary>Gets the path of the queue or topic relative to the 
+            <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</summary> 
+            <value>The path of the queue or topic relative to the <see cref="T:Microsoft.ServiceBus.Messaging.MessagingFactory" /> base address.</value>
+        </member>
         <member name="P:Microsoft.ServiceBus.Messaging.MessageSender.BatchFlushInterval">
             <summary>Gets the batch flush interval.</summary>
             <value>A batch flush interval. The default value is 20 ms.</value>
@@ -11990,13 +11683,6 @@
             <param name="isTransientError">true if the exception is transient; otherwise, false.</param>
             <param name="innerException">The exception that is the cause of the current exception.</param>
         </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.MessagingException.#ctor(System.String,Microsoft.ServiceBus.Tracing.TrackingContext,System.Exception)">
-            <summary>Initializes a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.MessagingException" /> class with a specified error message.</summary> 
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="trackingContext"> The TrackingContext. </param>
-            <param name="innerException">The exception that is the cause of the current exception.</param>
-        </member>
         <member name="M:Microsoft.ServiceBus.Messaging.MessagingException.#ctor(Microsoft.ServiceBus.Messaging.MessagingExceptionDetail,Microsoft.ServiceBus.Tracing.TrackingContext)">
             <summary> Constructor. </summary>
             <param name="detail"> Detail about the cause of the exception. </param>
@@ -12109,6 +11795,10 @@
              </example>
              <seealso cref="P:Microsoft.ServiceBus.Messaging.TopicClient.MessagingFactory"/>
         </member>
+        <member name="P:Microsoft.ServiceBus.Messaging.TopicClient.Path">
+            <summary>Gets or sets the full pathname of the file.</summary>
+            <value>The full pathname of the file.</value>
+        </member>
         <member name="P:Microsoft.ServiceBus.Messaging.TopicClient.MessagingFactory">
             <summary>Gets or sets the messaging factory that was used in creating this 
             <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> object.</summary> 
@@ -12145,63 +11835,6 @@
                 </appSettings>
             </code>
             </remarks>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the topic.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientCredential">The app credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientAssertionCertificate,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Sercvice Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the topic.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientAssertionCertificate">The client assertion certificate credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.UserPasswordCredential,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the topic.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="userPasswordCredential">The user password credential.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.Create(System.Uri,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> by using Azure Active Directory authentication context.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the topic.</param>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="userIdentifier">User Identifier</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" />.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.CreateWithManagedServiceIdentity(System.Uri,System.String,System.Nullable{System.TimeSpan},Microsoft.ServiceBus.Messaging.TransportType)">
-            <summary>Creates a new instance of the 
-            <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" /> by using Azure Managed Service Identity authentication.</summary> 
-            <param name="endpointAddress">Fully qualified domain name for Service Bus. Most likely, {yournamespace}.servicebus.windows.net</param>
-            <param name="path">The path to the topic.</param>
-            <param name="operationTimeout"><see cref="T:System.TimeSpan" /> that specifies how long the messaging operation has to complete before timing out</param>
-            <param name="transportType">Messaging transport type.</param>
-            <returns>The created <see cref="T:Microsoft.ServiceBus.Messaging.TopicClient" />.</returns>
         </member>
         <member name="M:Microsoft.ServiceBus.Messaging.TopicClient.CreateFromConnectionString(System.String,System.String)">
             <summary>Creates a new instance of 
@@ -16979,11 +16612,11 @@
             service, then wait for messages. This might allow you to more easily work around TCP port constraints.</summary> 
         </member>
         <member name="F:Microsoft.ServiceBus.ConnectivityMode.Tcp">
-            <summary>TCP mode. Listeners create TCP connections to the Service 
+            <summary>TCP mode (default). Listeners create TCP connections to the Service 
             Bus service to a destination port in the range 9350 to 9354.</summary> 
         </member>
         <member name="F:Microsoft.ServiceBus.ConnectivityMode.AutoDetect">
-            <summary>Auto-detect mode (default). Automatically selects between the TCP, HTTP and HTTPS modes based on an auto-detection mechanism that probes whether 
+            <summary>Auto-detect mode. Automatically selects between the TCP, HTTP and HTTPS modes based on an auto-detection mechanism that probes whether 
             either connectivity option is available for the current network environment. If both are available, the system will choose TCP by default.</summary> 
         </member>
         <member name="F:Microsoft.ServiceBus.ConnectivityMode.Https">
@@ -17372,52 +17005,6 @@
             <param name="credential">The user credential.</param>
             <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning OAuth token.</returns>
         </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateAadTokenProvider(Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential,System.Uri)">
-            <summary>Creates an Azure Active Directory token provider.</summary>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientCredential">The app credential.</param>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateAadTokenProvider(Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,Microsoft.IdentityModel.Clients.ActiveDirectory.ClientAssertionCertificate,System.Uri)">
-            <summary>Creates an Azure Active Directory token provider.</summary>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientAssertionCertificate">The client assertion certificate credential.</param>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateAadTokenProvider(Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,Microsoft.IdentityModel.Clients.ActiveDirectory.UserPasswordCredential,System.Uri)">
-            <summary>Creates an Azure Active Directory token provider.</summary>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="userPasswordCredential">The user password credential.</param>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateAadTokenProvider(Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,Microsoft.IdentityModel.Clients.ActiveDirectory.UserIdentifier,System.Uri)">
-            <summary>Creates an Azure Active Directory token provider.</summary>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="userIdentifier">User Identifier</param>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateAadTokenProvider(Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext,System.String,System.Uri,Microsoft.IdentityModel.Clients.ActiveDirectory.IPlatformParameters,System.Uri)">
-            <summary>Creates an Azure Active Directory token provider.</summary>
-            <param name="authContext">AuthenticationContext for AAD.</param>
-            <param name="clientId">ClientId for AAD.</param>
-            <param name="redirectUri">The redrectUri on Client App.</param>
-            <param name="platformParameters">Platform parameters</param>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
-        <member name="M:Microsoft.ServiceBus.TokenProvider.CreateManagedServiceIdentityTokenProvider(System.Uri)">
-            <summary>Creates Azure Managed Service Identity token provider.</summary>
-            <param name="audience">The service resource URI for token acquisition.</param>
-            <returns>The <see cref="T:Microsoft.ServiceBus.TokenProvider" /> for returning Json web token.</returns>
-        </member>
         <member name="M:Microsoft.ServiceBus.TokenProvider.BeginGetToken(System.String,System.String,System.Boolean,System.TimeSpan,System.AsyncCallback,System.Object)">
             <summary>Begins an asynchronous operation to get a security token.</summary>
             <param name="appliesTo">The URI which the access token applies to.</param>
@@ -17658,9 +17245,6 @@
         </member>
         <member name="F:Microsoft.ServiceBus.ExceptionErrorCodes.IpRejected">
             <summary>The incoming ip has been rejected by policy.</summary>
-        </member>
-        <member name="F:Microsoft.ServiceBus.ExceptionErrorCodes.IpNotInAcledSubNet">
-            <summary>The incoming ip is not in acled subnet.</summary>
         </member>
         <member name="F:Microsoft.ServiceBus.ExceptionErrorCodes.ForbiddenGeneric">
             <summary>A generic forbidden error.</summary>
@@ -20635,10 +20219,9 @@
             <param name="param3">Parameter 3 for string: {0}: The link (name='{1}', handle={2}) is being detached. Action: {3}, Error: {4}</param>
             <param name="param4">Parameter 4 for string: {0}: The link (name='{1}', handle={2}) is being detached. Action: {3}, Error: {4}</param>
         </member>
-        <member name="M:Microsoft.ServiceBus.Tracing.EventDefinitionResources.event_AmqpBufferHighTakeCount(System.Object,System.Object)">
-            <summary>Gets localized string like: The buffer manager '{0}' has high take count {1} (buffers taken are not returned).</summary>
-            <param name="param0">Parameter 0 for string: The buffer manager '{0}' has high take count {1} (buffers taken are not returned).</param>
-            <param name="param1">Parameter 1 for string: The buffer manager '{0}' has high take count {1} (buffers taken are not returned).</param>
+        <member name="M:Microsoft.ServiceBus.Tracing.EventDefinitionResources.event_AmqpBufferHighTakeCount(System.Object)">
+            <summary>Gets localized string like: The buffer manager '{0}' has high take count {0} (buffers taken are not returned).</summary>
+            <param name="param0">Parameter 0 for string: The buffer manager '{0}' has high take count {0} (buffers taken are not returned).</param>
         </member>
         <member name="M:Microsoft.ServiceBus.Tracing.EventDefinitionResources.eventAmqpConnectionMetrics(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
             <summary>Gets localized string like: {0}: namespace: {1}, operation: {2}, duration (ticks): {3}, total bytes: {4}, frame count: {5}.</summary>
@@ -20978,11 +20561,6 @@
             <param name="param0">Parameter 0 for string: Operation {0} failed with an error {1}.</param>
             <param name="param1">Parameter 1 for string: Operation {0} failed with an error {1}.</param>
         </member>
-        <member name="M:Microsoft.ServiceBus.Tracing.EventDefinitionResources.event_NetshErrorOccurred(System.Object,System.Object)">
-            <summary>Gets localized string like: Operation '{0}'' failed with an error {1}.</summary>
-            <param name="param0">Parameter 0 for string: Operation '{0}'' failed with an error {1}.</param>
-            <param name="param1">Parameter 1 for string: Operation '{0}'' failed with an error {1}.</param>
-        </member>
         <member name="M:Microsoft.ServiceBus.Tracing.EventDefinitionResources.event_BrokeredMessageDeserializationError(System.Object,System.Object,System.Object,System.Object)">
             <summary>Gets localized string like: BrokeredMessage deserializing from store error. TrackingId: {0}, Entity: {1}, Bytes: {2}, Exception: {3}.</summary>
             <param name="param0">Parameter 0 for string: BrokeredMessage deserializing from store error. TrackingId: {0}, Entity: {1}, Bytes: {2}, Exception: {3}.</param>
@@ -21064,12 +20642,7 @@
         </member>
         <member name="M:Microsoft.ServiceBus.StringExtensions.EnsureEndsWith(System.String,System.String,System.StringComparison)">
             <summary>
-            Ensures the given string ends with the requested pattern. If it does no allocations are performed.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ServiceBus.StringExtensions.EnsureStartsWith(System.String,System.String,System.StringComparison)">
-            <summary>
-            Ensures the given string starts with the requested pattern. If it does no allocations are performed.
+            Ensures the given string ends with the requested pattern.  If it does no allocations are performed.
             </summary>
         </member>
         <member name="M:Microsoft.ServiceBus.StringExtensions.Truncate(System.String,System.Int32)">
@@ -21103,11 +20676,6 @@
         <member name="P:Microsoft.ServiceBus.TransportClientEndpointBehavior.TokenProvider">
             <summary>Gets or sets the token provider that is used as a binding parameter.</summary>
             <value>The token provider used as a binding parameter.</value>
-        </member>
-        <member name="P:Microsoft.ServiceBus.TransportClientEndpointBehavior.ActivityId">
-            <summary>
-            Gets or sets a unique indentifier which can be used to for correlating the listener instance at the cloud service.
-            </summary>
         </member>
         <member name="M:Microsoft.ServiceBus.TransportClientEndpointBehavior.System#ServiceModel#Description#IEndpointBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
             <summary>
@@ -22397,9 +21965,6 @@
         <member name="P:Microsoft.ServiceBus.SRClient.InvalidIpAddressCIDRValue">
             <summary>Gets localized string like: The provided ip address mask contain invalid CIDR value. CIDR has to be a byte representation under 32. if 0, then it has to be the format '0.0.0.0/0'</summary>
         </member>
-        <member name="P:Microsoft.ServiceBus.SRClient.IpAddressRejected">
-            <summary>Gets localized string like: Ip has been prevented to connect to the endpoint.</summary>
-        </member>
         <member name="P:Microsoft.ServiceBus.SRClient.BufferAlreadyReclaimed">
             <summary>Gets localized string like: The buffer has already been reclaimed.</summary>
         </member>
@@ -22528,6 +22093,9 @@
         </member>
         <member name="P:Microsoft.ServiceBus.SRClient.UnrecognizedCredentialType">
             <summary>Gets localized string like: CredentialType is either unrecognized or unable to create HTTP authorization token.</summary>
+        </member>
+        <member name="P:Microsoft.ServiceBus.SRClient.LockedMessageInfo">
+            <summary>Gets localized string like: Unable to retrieve the LockedMessageInfo property from message.</summary>
         </member>
         <member name="P:Microsoft.ServiceBus.SRClient.ReadOnlyPolicy">
             <summary>Gets localized string like: Policy is read-only.</summary>
@@ -23063,8 +22631,10 @@
         <member name="P:Microsoft.ServiceBus.SRClient.NotSupportedNoneExclusiveSessionMode">
             <summary>Gets localized string like: None exclusive session mode supported only on Premium Messaging and sbmp client</summary>
         </member>
-        <member name="P:Microsoft.ServiceBus.SRClient.IpAddressNotInAcledSubnet">
-            <summary>Gets localized string like: IP Address doesn't belong to acled subnet.</summary>
+        <member name="M:Microsoft.ServiceBus.SRClient.IpAddressRejected(System.Object,System.Object)">
+            <summary>Gets localized string like: The Ip address {0} has been rejected to connect to the endpoint {1}.</summary>
+            <param name="param0">Parameter 0 for string: The Ip address {0} has been rejected to connect to the endpoint {1}.</param>
+            <param name="param1">Parameter 1 for string: The Ip address {0} has been rejected to connect to the endpoint {1}.</param>
         </member>
         <member name="M:Microsoft.ServiceBus.SRClient.CommunicationObjectFaulted(System.Object)">
             <summary>Gets localized string like: The communication object, {0}, cannot be used because it is in a faulted state.</summary>
