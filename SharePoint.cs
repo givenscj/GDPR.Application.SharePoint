@@ -1,14 +1,15 @@
 ﻿using GDPR.Common;
 using GDPR.Common.Classes;
+using GDPR.Common.Core;
 using Microsoft.Office.Server.Search.Query;
 using Microsoft.Office.Server.UserProfiles;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace GDPR.Applications
 {
@@ -21,8 +22,11 @@ namespace GDPR.Applications
             this._version = "1.0.0.0";
 
             this._supportsEmailSearch = true;
+            this._supportsAddressSearch = true;
             this._supportsPersonalSearch = true;
             this._supportsPhoneSearch = true;
+
+            this._supportsRecords = true;
         }
 
         public override void Init()
@@ -40,6 +44,7 @@ namespace GDPR.Applications
             List<Record> items = new List<Record>();
 
             items.Add(new Record { Type = "SPListItem" });
+            items.Add(new Record { Type = "SPDocument" });
             items.Add(new Record { Type = "SPUser" });
             items.Add(new Record { Type = "SPUserProfile" });
 
@@ -91,14 +96,48 @@ namespace GDPR.Applications
                 using (SPSite siteCollection = GetFirstSPSite())
                 {
                     KeywordQuery keywordQuery = new KeywordQuery(siteCollection);
+                    SearchExecutor searchExecutor = new SearchExecutor();
 
                     foreach (GDPRSubjectEmail se in search.EmailAddresses)
                     {
                         keywordQuery.QueryText = se.EmailAddress;
-                        SearchExecutor searchExecutor = new SearchExecutor();
                         ResultTableCollection resultTableCollection = searchExecutor.ExecuteQuery(keywordQuery);
                         ResultTable resultTable = resultTableCollection.Filter("TableType", KnownTableTypes.RelevantResults).FirstOrDefault();
                         DataTable dataTable = resultTable.Table;
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            foreach(DataRow dr in dataTable.Rows)
+                            {
+                                Record r = GetSearchRecord(dr);
+
+                                if (r != null)
+                                {
+                                    records.Add(r);
+                                }
+                            }
+                        }
+                    }
+
+                    foreach (GDPRSubjectPhone se in search.Phones)
+                    {
+                        keywordQuery.QueryText = se.Raw;
+                        ResultTableCollection resultTableCollection = searchExecutor.ExecuteQuery(keywordQuery);
+                        ResultTable resultTable = resultTableCollection.Filter("TableType", KnownTableTypes.RelevantResults).FirstOrDefault();
+                        DataTable dataTable = resultTable.Table;
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in dataTable.Rows)
+                            {
+                                Record r = GetSearchRecord(dr);
+
+                                if (r != null)
+                                {
+                                    records.Add(r);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -110,9 +149,50 @@ namespace GDPR.Applications
             return records;
         }
 
+        public Record GetSearchRecord(DataRow dr)
+        {
+            if (dr != null)
+            {
+                Record r = new Record();
+                string contentClass = dr["contentclass"].ToString();
+
+                switch(contentClass)
+                {
+                    case "STS_List_Contacts":
+                        r.Type = "SPListItem";
+                        r.LinkUrl = dr["OriginalPath"].ToString();
+                        r.RecordDate = (DateTime)dr["LastModifiedTime"];
+                        r.RecordId = dr["DocId"].ToString();
+                        r.Object = dr["HitHighlightedSummary"].ToString();
+                        break;
+                    case "STS_ListItem_DocumentLibrary":
+                        r.Type = "SPDocument";
+                        r.LinkUrl = dr["OriginalPath"].ToString();
+                        r.RecordDate = (DateTime)dr["LastModifiedTime"];
+                        r.RecordId = dr["DocId"].ToString();
+                        r.Object = dr["HitHighlightedSummary"].ToString();
+                        break;
+                    default:
+                        r = null;
+                        GDPRCore.Current.Log($"{contentClass} is not mapped to a record type");
+                        break;
+                }
+
+                if (r != null)
+                {
+                    ValidateRecord(r);
+                    return r;
+                }
+            }
+
+            return null;
+        }
+
         public List<Record> DoProfileSearch(GDPRSubject search)
         {
             List<Record> records = new List<Record>();
+
+            UserProfileManager mgr = GetUserProfileManager();
 
             //do userprofile
             foreach (GDPRSubjectEmail se in search.EmailAddresses)
@@ -121,25 +201,26 @@ namespace GDPR.Applications
 
                 string loginName = se.EmailAddress;
 
-                //testing 
-                loginName = "administrator@sanspug.org";
                 //loginName = Utility.UrlEncode(loginName);
+                //UserProfile up = mgr.GetUserProfile(Guid.Parse("82712b6f-bfe0-4353-905e-0539d7dcc027"));
 
-                UserProfileManager mgr = GetUserProfileManager();
-                UserProfile up = mgr.GetUserProfile(Guid.Parse("82712b6f-bfe0-4353-905e-0539d7dcc027"));
-                //UserProfile up = mgr.GetUserProfile(loginName);
-                string data = Utility.SerializeObject(up.Properties, 1);
-                //r.AdminLinkUrl = up.PersonalUrl.ToString();
-                //r.LinkUrl = up.PersonalUrl.ToString();
-                r.ApplicationId = Guid.Parse(GDPR.Common.Configuration.ApplicationId);
-                r.Object = data;
-                r.Type = "UserProfile";
-                r.RecordId = up.ID.ToString();
-                r.RecordDate = up.PersonalSiteLastCreationTime;
+                UserProfile up = mgr.GetUserProfile(loginName);
 
-                ValidateRecord(r);
+                if (up != null)
+                {
+                    string data = Utility.SerializeObject(up.Properties, 1);
+                    //r.AdminLinkUrl = up.PersonalUrl.ToString();
+                    //r.LinkUrl = up.PersonalUrl.ToString();
+                    r.ApplicationId = this.ApplicationId;
+                    r.Object = data;
+                    r.Type = "UserProfile";
+                    r.RecordId = up.ID.ToString();
+                    r.RecordDate = up.PersonalSiteLastCreationTime;
 
-                records.Add(r);
+                    ValidateRecord(r);
+
+                    records.Add(r);
+                }
             }
 
             return records;
@@ -184,24 +265,19 @@ namespace GDPR.Applications
 
             SPWebService service = farm.Services.GetValue<SPWebService>("");
 
-            foreach (SPWebApplication webApp in service.WebApplications)
-            {
-                foreach (SPSite site in webApp.Sites)
-                {
-                    //get user profiles...
-                    SPServiceContext serviceContext = SPServiceContext.GetContext(site);
+            SPSite site = GetFirstSPSite();
 
-                    try
-                    {
-                        UserProfileManager userProfileMgr = new UserProfileManager(serviceContext);
-                        return userProfileMgr;
-                    }
-                    catch (System.Exception e)
-                    {
-                        Console.WriteLine(e.GetType().ToString() + ": " + e.Message);
-                        Console.Read();
-                    }
-                }
+            SPServiceContext serviceContext = SPServiceContext.GetContext(site);
+
+            try
+            {
+                UserProfileManager userProfileMgr = new UserProfileManager(serviceContext);
+                return userProfileMgr;
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e.GetType().ToString() + ": " + e.Message);
+                Console.Read();
             }
 
             return null;
