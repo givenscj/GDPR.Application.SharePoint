@@ -89,6 +89,8 @@ namespace GDPR.Applications
 
         public List<Record> DoSharePointSearch(GDPRSubject search)
         {
+            GDPRCore.Current.Log("Starting SharePoint Search");
+
             List<Record> records = new List<Record>();
 
             try
@@ -190,6 +192,8 @@ namespace GDPR.Applications
 
         public List<Record> DoProfileSearch(GDPRSubject search)
         {
+            GDPRCore.Current.Log("Starting Profile Search");
+
             List<Record> records = new List<Record>();
 
             UserProfileManager mgr = GetUserProfileManager();
@@ -204,22 +208,29 @@ namespace GDPR.Applications
                 //loginName = Utility.UrlEncode(loginName);
                 //UserProfile up = mgr.GetUserProfile(Guid.Parse("82712b6f-bfe0-4353-905e-0539d7dcc027"));
 
-                UserProfile up = mgr.GetUserProfile(loginName);
-
-                if (up != null)
+                try
                 {
-                    string data = Utility.SerializeObject(up.Properties, 1);
-                    //r.AdminLinkUrl = up.PersonalUrl.ToString();
-                    //r.LinkUrl = up.PersonalUrl.ToString();
-                    r.ApplicationId = this.ApplicationId;
-                    r.Object = data;
-                    r.Type = "UserProfile";
-                    r.RecordId = up.ID.ToString();
-                    r.RecordDate = up.PersonalSiteLastCreationTime;
+                    UserProfile up = mgr.GetUserProfile(loginName);
 
-                    ValidateRecord(r);
+                    if (up != null)
+                    {
+                        string data = Utility.SerializeObject(up.Properties, 1);
+                        //r.AdminLinkUrl = up.PersonalUrl.ToString();
+                        //r.LinkUrl = up.PersonalUrl.ToString();
+                        r.ApplicationId = this.ApplicationId;
+                        r.Object = data;
+                        r.Type = "UserProfile";
+                        r.RecordId = up.ID.ToString();
+                        r.RecordDate = up.PersonalSiteLastCreationTime;
 
-                    records.Add(r);
+                        ValidateRecord(r);
+
+                        records.Add(r);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    GDPRCore.Current.Log(ex, Common.Enums.LogLevel.Error);
                 }
             }
 
