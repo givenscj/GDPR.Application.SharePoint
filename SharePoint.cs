@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace GDPR.Applications
 {
-    public class SharePoint : BaseGDPROAuthApplication
+    public class SharePoint : GDPROAuthApplicationBase
     {
         HttpHelper hh = new HttpHelper();
 
