@@ -80,6 +80,9 @@ namespace GDPR.Applications
             if (method == "POST")
                 html = hh.DoPost(finalUrl, data, "");
 
+            if (method == "PUT")
+                html = hh.DoPut(finalUrl, data, "");
+
             if (method == "DELETE")
                 html = hh.DoDelete(finalUrl, data, "");
 
